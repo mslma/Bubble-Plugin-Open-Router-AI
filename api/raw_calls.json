@@ -1,0 +1,149 @@
+{
+    "auth": "private_key_header",
+    "calls": {
+        "AAC": {
+            "body": "{\n  \"model\": \"<Model>\",\n  \"messages\": [<Messages>],\n  \"stream\": false,\n  \"max_tokens\":<Max Tokens>,\n  \"temperature\":<Temperature>,\n  \"top_p\":<Top P>,\n  \"top_k\":<Top K>,\n  \"frequency_penalty\":<Frequency Penalty>,\n  \"presence_penalty\":<Presence Penalty>,\n  \"repetition_penalty\":<Repetition Penalty>,\n  \"min_p\":<Min Probability>,\n  \"top_a\":<Top A>,\n  \"seed\":<Seed>,\n  \"logit_bias\":<Logit Bias>,\n  \"logprobs\":<Log Probabilities>,\n  \"top_logprobs\":<Top Log Probability>,\n  \"response_format\":<Response Format>,\n  \"stop\":\"<Stop>\"\n}",
+            "body_params": {
+                "AAD": {
+                    "key": "Model",
+                    "private": true,
+                    "value": "mistralai/mixtral-8x7b-instruct"
+                },
+                "AAE": {
+                    "key": "Messages",
+                    "private": true,
+                    "value": "{\"role\": \"user\", \"content\": \"What is the meaning of life?\"}"
+                },
+                "AAF": {
+                    "doc": "Based on the Model max tokens limit",
+                    "key": "Max Tokens",
+                    "private": true,
+                    "value": "500"
+                },
+                "AAG": {
+                    "doc": "Range: [0, 2]",
+                    "key": "Temperature",
+                    "private": true,
+                    "value": "1"
+                },
+                "AAM": {
+                    "allow_blank": true,
+                    "doc": "This setting limits the model's choices to a percentage of likely tokens: only the top tokens whose probabilities add up to P. A lower value makes the model's responses more predictable, while the default setting allows for a full range of token choices. Think of it like a dynamic Top-K.",
+                    "key": "Top P",
+                    "private": true,
+                    "value": ""
+                },
+                "AAO": {
+                    "allow_blank": true,
+                    "doc": "This limits the model's choice of tokens at each step, making it choose from a smaller set. A value of 1 means the model will always pick the most likely next token, leading to predictable results. By default this setting is disabled, making the model to consider all choices.",
+                    "key": "Top K",
+                    "private": true,
+                    "value": ""
+                },
+                "AAP": {
+                    "allow_blank": true,
+                    "doc": "Range: -2.0 to 2.0\n\nThis setting aims to control the repetition of tokens based on how often they appear in the input. It tries to use less frequently those tokens that appear more in the input, proportional to how frequently they occur. Token penalty scales with the number of occurrences. Negative values will encourage token reuse.",
+                    "key": "Frequency Penalty",
+                    "private": true,
+                    "value": ""
+                },
+                "AAS": {
+                    "allow_blank": true,
+                    "doc": "Range: -2.0 to 2.0 \n\nAdjusts how often the model repeats specific tokens already used in the input. Higher values make such repetition less likely, while negative values do the opposite. Token penalty does not scale with the number of occurrences. Negative values will encourage token reuse.",
+                    "key": "Presence Penalty",
+                    "private": true,
+                    "value": ""
+                },
+                "AAT": {
+                    "allow_blank": true,
+                    "doc": "Range: 0.0 to 2.0 \n\nHelps to reduce the repetition of tokens from the input. A higher value makes the model less likely to repeat tokens, but too high a value can make the output less coherent (often with run-on sentences that lack small words). Token penalty scales based on original token's probability.",
+                    "key": "Repetition Penalty",
+                    "private": true,
+                    "value": ""
+                },
+                "AAU": {
+                    "allow_blank": true,
+                    "doc": "Range: 0.0 to 1.0\n\nRepresents the minimum probability for a token to be considered, relative to the probability of the most likely token. (The value changes depending on the confidence level of the most probable token.) If your Min-P is set to 0.1, that means it will only allow for tokens that are at least 1/10th as probable as the best possible option.",
+                    "key": "Min Probability",
+                    "private": true,
+                    "value": ""
+                },
+                "AAV": {
+                    "allow_blank": true,
+                    "doc": "Range: 0.0 to 1.0\n\nConsider only the top tokens with \"sufficiently high\" probabilities based on the probability of the most likely token. Think of it like a dynamic Top-P. A lower Top-A value focuses the choices based on the highest probability token but with a narrower scope. A higher Top-A value does not necessarily affect the creativity of the output, but rather refines the filtering process based on the maximum probability.",
+                    "key": "Top A",
+                    "private": true,
+                    "value": ""
+                },
+                "AAW": {
+                    "allow_blank": true,
+                    "doc": "If specified, the inferencing will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed for some models.",
+                    "key": "Seed",
+                    "private": true,
+                    "value": ""
+                },
+                "AAX": {
+                    "allow_blank": true,
+                    "doc": "Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.",
+                    "key": "Logit Bias",
+                    "private": true,
+                    "value": "{}"
+                },
+                "AAY": {
+                    "allow_blank": true,
+                    "doc": "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned.",
+                    "key": "Log Probabilities",
+                    "private": true,
+                    "value": "true"
+                },
+                "AAZ": {
+                    "allow_blank": true,
+                    "doc": "Range: 0 to 20\n\nSpecifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.",
+                    "key": "Top Log Probability",
+                    "private": true,
+                    "value": ""
+                },
+                "AAa": {
+                    "allow_blank": true,
+                    "doc": "Forces the model to produce specific output format. Setting to { \"type\": \"json_object\" } enables JSON mode, which guarantees the message the model generates is valid JSON. Note: when using JSON mode, you should also instruct the model to produce JSON yourself via a system or user message.",
+                    "key": "Response Format",
+                    "private": true,
+                    "value": "{\"type\":\"json_object\"}"
+                },
+                "AAb": {
+                    "allow_blank": true,
+                    "doc": "Stop generation immediately if the model encounter any token specified in the stop array.",
+                    "key": "Stop",
+                    "private": true,
+                    "value": ""
+                }
+            },
+            "doc_link": "https://openrouter.ai/docs",
+            "initialized": true,
+            "method": "post",
+            "name": "Chat",
+            "publish_as": "action",
+            "rank": 0,
+            "ret_value": "api.1714507440617x188775957185167360.plugin_api.AAC",
+            "should_reinitialize": true,
+            "types": "{\"plugin_api.AAC\":{\"caption\":\"Chat\",\"fields\":{\"_p_body.id\":{\"ret_btype\":\"text\",\"caption\":\"body id\",\"sample_value\":\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\",\"path\":[\"body\",\"id\"]},\"_p_body.model\":{\"ret_btype\":\"text\",\"caption\":\"body model\",\"sample_value\":\"mistralai/mixtral-8x7b-instruct\",\"path\":[\"body\",\"model\"]},\"_p_body.object\":{\"ret_btype\":\"text\",\"caption\":\"body object\",\"sample_value\":\"chat.completion\",\"path\":[\"body\",\"object\"]},\"_p_body.created\":{\"ret_btype\":\"number\",\"caption\":\"body created\",\"sample_value\":1715205536,\"path\":[\"body\",\"created\"]},\"_p_body.choices\":{\"ret_btype\":\"list.api.1714507440617x188775957185167360.plugin_api.AAC.body.choices\",\"caption\":\"body choices\",\"path\":[\"body\",\"choices\"]},\"_p_body.usage.prompt_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage prompt_tokens\",\"sample_value\":16,\"path\":[\"body\",\"usage\",\"prompt_tokens\"]},\"_p_body.usage.completion_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage completion_tokens\",\"sample_value\":174,\"path\":[\"body\",\"usage\",\"completion_tokens\"]},\"_p_body.usage.total_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage total_tokens\",\"sample_value\":190,\"path\":[\"body\",\"usage\",\"total_tokens\"]},\"_p_body.usage.total_cost\":{\"ret_btype\":\"number\",\"caption\":\"body usage total_cost\",\"sample_value\":0.000095,\"path\":[\"body\",\"usage\",\"total_cost\"]},\"_p_error.status_code\":{\"ret_btype\":\"number\",\"caption\":\"error status_code\",\"sample_value\":200,\"path\":[\"error\",\"status_code\"]},\"_p_error.status_message\":{\"ret_btype\":\"text\",\"caption\":\"error status_message\",\"sample_value\":\"OK\",\"path\":[\"error\",\"status_message\"]},\"_p_error.body\":{\"ret_btype\":\"text\",\"caption\":\"error body\",\"sample_value\":\"\\\"\\\\n         \\\\n\\\\n         \\\\n\\\\n         \\\\n\\\\n         \\\\n{\\\\\\\"id\\\\\\\":\\\\\\\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\\\\\\\",\\\\\\\"model\\\\\\\":\\\\\\\"mistralai/mixtral-8x7b-instruct\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"chat.completion\\\\\\\",\\\\\\\"created\\\\\\\":1715205536,\\\\\\\"choices\\\\\\\":[{\\\\\\\"index\\\\\\\":0,\\\\\\\"message\\\\\\\":{\\\\\\\"role\\\\\\\":\\\\\\\"assistant\\\\\\\",\\\\\\\"content\\\\\\\":\\\\\\\"The meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. This question has been asked for centuries and has been the subject of much debate and contemplation.\\\\\\\\n\\\\\\\\nThere are many different perspectives on the meaning of life, and it is ultimately a personal and subjective matter. Some people may believe that the meaning of life is to seek happiness, knowledge, or personal fulfillment, while others may believe that it is to serve a higher power or to contribute to the greater good.\\\\\\\\n\\\\\\\\nIn the end, the meaning of life is something that each individual must determine for themselves, based on their own values, beliefs, and experiences. It is a question that may never have a definitive answer, but the search for meaning can be a rewarding and fulfilling journey in itself.\\\\\\\"},\\\\\\\"finish_reason\\\\\\\":\\\\\\\"stop\\\\\\\"}],\\\\\\\"usage\\\\\\\":{\\\\\\\"prompt_tokens\\\\\\\":16,\\\\\\\"completion_tokens\\\\\\\":174,\\\\\\\"total_tokens\\\\\\\":190,\\\\\\\"total_cost\\\\\\\":0.000095}}\\\"\",\"path\":[\"error\",\"body\"]},\"_p_returned_an_error\":{\"ret_btype\":\"boolean\",\"caption\":\"returned_an_error\",\"sample_value\":false,\"path\":[\"returned_an_error\"]}}},\"plugin_api.AAC.body.choices\":{\"caption\":\"Chat body choice\",\"fields\":{\"_p_index\":{\"ret_btype\":\"number\",\"caption\":\"index\",\"sample_value\":0,\"path\":[\"index\"]},\"_p_message.role\":{\"ret_btype\":\"text\",\"caption\":\"message role\",\"sample_value\":\"assistant\",\"path\":[\"message\",\"role\"]},\"_p_message.content\":{\"ret_btype\":\"text\",\"caption\":\"message content\",\"sample_value\":\"The meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. This question has been asked for centuries and has been the subject of much debate and contemplation.\\n\\nThere are many different perspectives on the meaning of life, and it is ultimately a personal and subjective matter. Some people may believe that the meaning of life is to seek happiness, knowledge, or personal fulfillment, while others may believe that it is to serve a higher power or to contribute to the greater good.\\n\\nIn the end, the meaning of life is something that each individual must determine for themselves, based on their own values, beliefs, and experiences. It is a question that may never have a definitive answer, but the search for meaning can be a rewarding and fulfilling journey in itself.\",\"path\":[\"message\",\"content\"]},\"_p_finish_reason\":{\"ret_btype\":\"text\",\"caption\":\"finish_reason\",\"sample_value\":\"stop\",\"path\":[\"finish_reason\"]}}}}",
+            "url": "https://openrouter.ai/api/v1/chat/completions",
+            "wrap_error": true
+        }
+    },
+    "human": "openrouter",
+    "shared_headers": {
+        "AAJ": {
+            "key": "HTTP-Referer",
+            "private": true,
+            "value": "https://bubble.io/",
+            "visibility": "hidden"
+        },
+        "AAK": {
+            "key": "X-Title",
+            "private": true,
+            "value": "Bubble",
+            "visibility": "hidden"
+        }
+    }
+}

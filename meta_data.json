@@ -1,0 +1,11 @@
+{
+    "categories": {
+        "0": "artificial intelligence (AI)"
+    },
+    "description": "A unified interface for LLMs. OpenRouter is an API that can be used with most AI SDKs, and has a very similar format to OpenAI's own API.\n\n1. Navigate to the OpenRouter API key management page at https://openrouter.ai/keys.\n2. Click on the \"Create Key\" button to generate a new API key.\n3. Once you have your API key, open your plugin settings. In the Authorization key field, enter your API key in the following format: Bearer API_KEY, replacing API_KEY with the actual key you generated.",
+    "image": "//meta-q.cdn.bubble.io/f1714508691608x403426812698008700/openrouter_logojpg.jpg",
+    "license": "open_source",
+    "link": "https://openrouter.ai/",
+    "name": "Open Router AI",
+    "plugin_instructions": "1. Navigate to the OpenRouter API key management page at https://openrouter.ai/keys.\n2. Click on the \"Create Key\" button to generate a new API key.\n3. Once you have your API key, open your plugin settings. In the Authorization key field, enter your API key in the following format: Bearer API_KEY, replacing API_KEY with the actual key you generated."
+}
