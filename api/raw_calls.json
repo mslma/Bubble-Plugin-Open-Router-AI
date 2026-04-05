@@ -2,12 +2,12 @@
     "auth": "private_key_header",
     "calls": {
         "AAC": {
-            "body": "{\n  \"model\": \"<Model>\",\n  \"messages\": [<Messages>],\n  \"stream\": false,\n  \"max_tokens\":<Max Tokens>,\n  \"temperature\":<Temperature>,\n  \"top_p\":<Top P>,\n  \"top_k\":<Top K>,\n  \"frequency_penalty\":<Frequency Penalty>,\n  \"presence_penalty\":<Presence Penalty>,\n  \"repetition_penalty\":<Repetition Penalty>,\n  \"min_p\":<Min Probability>,\n  \"top_a\":<Top A>,\n  \"seed\":<Seed>,\n  \"logit_bias\":<Logit Bias>,\n  \"logprobs\":<Log Probabilities>,\n  \"top_logprobs\":<Top Log Probability>,\n  \"response_format\":<Response Format>,\n  \"stop\":\"<Stop>\"\n}",
+            "body": "{\n  \"model\": \"<Model>\",\n  \"messages\": [<Messages>],\n  \"stream\": false,\n  \"max_tokens\":<Max Tokens>,\n  \"temperature\":<Temperature>,\n  \"top_p\":<Top P>,\n  \"top_k\":<Top K>,\n  \"frequency_penalty\":<Frequency Penalty>,\n  \"presence_penalty\":<Presence Penalty>,\n  \"repetition_penalty\":<Repetition Penalty>,\n  \"min_p\":<Min Probability>,\n  \"top_a\":<Top A>,\n  \"seed\":<Seed>,\n  \"logit_bias\":<Logit Bias>,\n  \"logprobs\":<Log Probabilities>,\n  \"top_logprobs\":<Top Log Probability>,\n  \"response_format\":<Response Format>,\n  \"stop\":\"<Stop>\",\n  \"tools\":<Tools>,\n  \"tool_choice\":\"<Tool Choice>\",\n  \"provider\":<Provider>,\n  \"transforms\":<Transforms>,\n  \"plugins\":<Plugins>,\n  \"reasoning\":<Reasoning>,\n  \"include_reasoning\":<Include Reasoning>\n}",
             "body_params": {
                 "AAD": {
                     "key": "Model",
                     "private": true,
-                    "value": "mistralai/mixtral-8x7b-instruct"
+                    "value": "meta-llama/llama-3.1-8b-instruct"
                 },
                 "AAE": {
                     "key": "Messages",
@@ -116,9 +116,58 @@
                     "key": "Stop",
                     "private": true,
                     "value": ""
+                },
+                "AAc": {
+                    "allow_blank": true,
+                    "doc": "Controls extended thinking for reasoning models (e.g. Claude 3.7+, DeepSeek R1, QwQ). Pass a JSON object with either an 'effort' key ('minimal', 'low', 'medium', 'high', 'xhigh') or a 'max_tokens' key (1024-128000). Example: {\"effort\":\"medium\"}",
+                    "key": "Reasoning",
+                    "private": true,
+                    "value": "{}"
+                },
+                "AAg": {
+                    "allow_blank": true,
+                    "doc": "Set to true to include the model's internal reasoning in the response under choices[0].message.reasoning. Only applies to reasoning/thinking models.",
+                    "key": "Include Reasoning",
+                    "private": true,
+                    "value": ""
+                },
+                "AAh": {
+                    "allow_blank": true,
+                    "doc": "A JSON array of tool/function definitions in OpenAI function-calling format. Enables tool use for models that support it. Example: [{\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"description\":\"Get weather\",\"parameters\":{\"type\":\"object\",\"properties\":{\"location\":{\"type\":\"string\"}},\"required\":[\"location\"]}}}]",
+                    "key": "Tools",
+                    "private": true,
+                    "value": "[]"
+                },
+                "AAi": {
+                    "allow_blank": true,
+                    "doc": "Controls which tool the model uses. Options: \"auto\" (model decides), \"none\" (no tools), \"required\" (must use a tool), or a specific tool object: {\"type\":\"function\",\"function\":{\"name\":\"tool_name\"}}",
+                    "key": "Tool Choice",
+                    "private": true,
+                    "value": ""
+                },
+                "AAj": {
+                    "allow_blank": true,
+                    "doc": "JSON object for provider routing preferences. Use 'order' to specify provider priority (e.g. [\"Anthropic\",\"OpenAI\"]), 'require_parameters' (true/false) to only route to providers supporting all specified params, and 'allow_fallbacks' (true/false) to control fallback behavior. Example: {\"order\":[\"Anthropic\"],\"require_parameters\":true,\"allow_fallbacks\":false}",
+                    "key": "Provider",
+                    "private": true,
+                    "value": "{}"
+                },
+                "AAk": {
+                    "allow_blank": true,
+                    "doc": "A JSON array of OpenRouter prompt transforms. Use [\"middle-out\"] to enable context compression, which trims the middle of long prompts to fit within context windows while preserving the beginning and end.",
+                    "key": "Transforms",
+                    "private": true,
+                    "value": "[]"
+                },
+                "AAl": {
+                    "allow_blank": true,
+                    "doc": "A JSON array of plugin names to enable for this request. Available plugins: \"web\" (real-time web search), \"file-parser\" (PDF/document processing), \"response-healing\" (auto-fix malformed JSON responses), \"context-compression\" (middle-out prompt compression). Example: [\"web\",\"response-healing\"]",
+                    "key": "Plugins",
+                    "private": true,
+                    "value": "[]"
                 }
             },
-            "doc_link": "https://openrouter.ai/docs",
+            "doc_link": "https://openrouter.ai/docs/api-reference/chat-completion",
             "initialized": true,
             "method": "post",
             "name": "Chat",
@@ -126,7 +175,7 @@
             "rank": 0,
             "ret_value": "api.1714507440617x188775957185167360.plugin_api.AAC",
             "should_reinitialize": true,
-            "types": "{\"plugin_api.AAC\":{\"caption\":\"Chat\",\"fields\":{\"_p_body.id\":{\"ret_btype\":\"text\",\"caption\":\"body id\",\"sample_value\":\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\",\"path\":[\"body\",\"id\"]},\"_p_body.model\":{\"ret_btype\":\"text\",\"caption\":\"body model\",\"sample_value\":\"mistralai/mixtral-8x7b-instruct\",\"path\":[\"body\",\"model\"]},\"_p_body.object\":{\"ret_btype\":\"text\",\"caption\":\"body object\",\"sample_value\":\"chat.completion\",\"path\":[\"body\",\"object\"]},\"_p_body.created\":{\"ret_btype\":\"number\",\"caption\":\"body created\",\"sample_value\":1715205536,\"path\":[\"body\",\"created\"]},\"_p_body.choices\":{\"ret_btype\":\"list.api.1714507440617x188775957185167360.plugin_api.AAC.body.choices\",\"caption\":\"body choices\",\"path\":[\"body\",\"choices\"]},\"_p_body.usage.prompt_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage prompt_tokens\",\"sample_value\":16,\"path\":[\"body\",\"usage\",\"prompt_tokens\"]},\"_p_body.usage.completion_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage completion_tokens\",\"sample_value\":174,\"path\":[\"body\",\"usage\",\"completion_tokens\"]},\"_p_body.usage.total_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage total_tokens\",\"sample_value\":190,\"path\":[\"body\",\"usage\",\"total_tokens\"]},\"_p_body.usage.total_cost\":{\"ret_btype\":\"number\",\"caption\":\"body usage total_cost\",\"sample_value\":0.000095,\"path\":[\"body\",\"usage\",\"total_cost\"]},\"_p_error.status_code\":{\"ret_btype\":\"number\",\"caption\":\"error status_code\",\"sample_value\":200,\"path\":[\"error\",\"status_code\"]},\"_p_error.status_message\":{\"ret_btype\":\"text\",\"caption\":\"error status_message\",\"sample_value\":\"OK\",\"path\":[\"error\",\"status_message\"]},\"_p_error.body\":{\"ret_btype\":\"text\",\"caption\":\"error body\",\"sample_value\":\"\\\"\\\\n         \\\\n\\\\n         \\\\n\\\\n         \\\\n\\\\n         \\\\n{\\\\\\\"id\\\\\\\":\\\\\\\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\\\\\\\",\\\\\\\"model\\\\\\\":\\\\\\\"mistralai/mixtral-8x7b-instruct\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"chat.completion\\\\\\\",\\\\\\\"created\\\\\\\":1715205536,\\\\\\\"choices\\\\\\\":[{\\\\\\\"index\\\\\\\":0,\\\\\\\"message\\\\\\\":{\\\\\\\"role\\\\\\\":\\\\\\\"assistant\\\\\\\",\\\\\\\"content\\\\\\\":\\\\\\\"The meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. This question has been asked for centuries and has been the subject of much debate and contemplation.\\\\\\\\n\\\\\\\\nThere are many different perspectives on the meaning of life, and it is ultimately a personal and subjective matter. Some people may believe that the meaning of life is to seek happiness, knowledge, or personal fulfillment, while others may believe that it is to serve a higher power or to contribute to the greater good.\\\\\\\\n\\\\\\\\nIn the end, the meaning of life is something that each individual must determine for themselves, based on their own values, beliefs, and experiences. It is a question that may never have a definitive answer, but the search for meaning can be a rewarding and fulfilling journey in itself.\\\\\\\"},\\\\\\\"finish_reason\\\\\\\":\\\\\\\"stop\\\\\\\"}],\\\\\\\"usage\\\\\\\":{\\\\\\\"prompt_tokens\\\\\\\":16,\\\\\\\"completion_tokens\\\\\\\":174,\\\\\\\"total_tokens\\\\\\\":190,\\\\\\\"total_cost\\\\\\\":0.000095}}\\\"\",\"path\":[\"error\",\"body\"]},\"_p_returned_an_error\":{\"ret_btype\":\"boolean\",\"caption\":\"returned_an_error\",\"sample_value\":false,\"path\":[\"returned_an_error\"]}}},\"plugin_api.AAC.body.choices\":{\"caption\":\"Chat body choice\",\"fields\":{\"_p_index\":{\"ret_btype\":\"number\",\"caption\":\"index\",\"sample_value\":0,\"path\":[\"index\"]},\"_p_message.role\":{\"ret_btype\":\"text\",\"caption\":\"message role\",\"sample_value\":\"assistant\",\"path\":[\"message\",\"role\"]},\"_p_message.content\":{\"ret_btype\":\"text\",\"caption\":\"message content\",\"sample_value\":\"The meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. This question has been asked for centuries and has been the subject of much debate and contemplation.\\n\\nThere are many different perspectives on the meaning of life, and it is ultimately a personal and subjective matter. Some people may believe that the meaning of life is to seek happiness, knowledge, or personal fulfillment, while others may believe that it is to serve a higher power or to contribute to the greater good.\\n\\nIn the end, the meaning of life is something that each individual must determine for themselves, based on their own values, beliefs, and experiences. It is a question that may never have a definitive answer, but the search for meaning can be a rewarding and fulfilling journey in itself.\",\"path\":[\"message\",\"content\"]},\"_p_finish_reason\":{\"ret_btype\":\"text\",\"caption\":\"finish_reason\",\"sample_value\":\"stop\",\"path\":[\"finish_reason\"]}}}}",
+            "types": "{\"plugin_api.AAC\":{\"caption\":\"Chat\",\"fields\":{\"_p_body.id\":{\"ret_btype\":\"text\",\"caption\":\"body id\",\"sample_value\":\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\",\"path\":[\"body\",\"id\"]},\"_p_body.model\":{\"ret_btype\":\"text\",\"caption\":\"body model\",\"sample_value\":\"mistralai/mixtral-8x7b-instruct\",\"path\":[\"body\",\"model\"]},\"_p_body.object\":{\"ret_btype\":\"text\",\"caption\":\"body object\",\"sample_value\":\"chat.completion\",\"path\":[\"body\",\"object\"]},\"_p_body.created\":{\"ret_btype\":\"number\",\"caption\":\"body created\",\"sample_value\":1715205536,\"path\":[\"body\",\"created\"]},\"_p_body.choices\":{\"ret_btype\":\"list.api.1714507440617x188775957185167360.plugin_api.AAC.body.choices\",\"caption\":\"body choices\",\"path\":[\"body\",\"choices\"]},\"_p_body.usage.prompt_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage prompt_tokens\",\"sample_value\":16,\"path\":[\"body\",\"usage\",\"prompt_tokens\"]},\"_p_body.usage.completion_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage completion_tokens\",\"sample_value\":174,\"path\":[\"body\",\"usage\",\"completion_tokens\"]},\"_p_body.usage.total_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage total_tokens\",\"sample_value\":190,\"path\":[\"body\",\"usage\",\"total_tokens\"]},\"_p_body.usage.total_cost\":{\"ret_btype\":\"number\",\"caption\":\"body usage total_cost\",\"sample_value\":0.000095,\"path\":[\"body\",\"usage\",\"total_cost\"]},\"_p_body.usage.reasoning_tokens\":{\"ret_btype\":\"number\",\"caption\":\"body usage reasoning_tokens\",\"sample_value\":0,\"path\":[\"body\",\"usage\",\"reasoning_tokens\"]},\"_p_error.status_code\":{\"ret_btype\":\"number\",\"caption\":\"error status_code\",\"sample_value\":200,\"path\":[\"error\",\"status_code\"]},\"_p_error.status_message\":{\"ret_btype\":\"text\",\"caption\":\"error status_message\",\"sample_value\":\"OK\",\"path\":[\"error\",\"status_message\"]},\"_p_error.body\":{\"ret_btype\":\"text\",\"caption\":\"error body\",\"sample_value\":\"\\\"\\\\n         \\\\n\\\\n         \\\\n\\\\n         \\\\n\\\\n         \\\\n{\\\\\\\"id\\\\\\\":\\\\\\\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\\\\\\\",\\\\\\\"model\\\\\\\":\\\\\\\"mistralai/mixtral-8x7b-instruct\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"chat.completion\\\\\\\",\\\\\\\"created\\\\\\\":1715205536,\\\\\\\"choices\\\\\\\":[{\\\\\\\"index\\\\\\\":0,\\\\\\\"message\\\\\\\":{\\\\\\\"role\\\\\\\":\\\\\\\"assistant\\\\\\\",\\\\\\\"content\\\\\\\":\\\\\\\"The meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. This question has been asked for centuries and has been the subject of much debate and contemplation.\\\\\\\\n\\\\\\\\nThere are many different perspectives on the meaning of life, and it is ultimately a personal and subjective matter. Some people may believe that the meaning of life is to seek happiness, knowledge, or personal fulfillment, while others may believe that it is to serve a higher power or to contribute to the greater good.\\\\\\\\n\\\\\\\\nIn the end, the meaning of life is something that each individual must determine for themselves, based on their own values, beliefs, and experiences. It is a question that may never have a definitive answer, but the search for meaning can be a rewarding and fulfilling journey in itself.\\\\\\\"},\\\\\\\"finish_reason\\\\\\\":\\\\\\\"stop\\\\\\\"}],\\\\\\\"usage\\\\\\\":{\\\\\\\"prompt_tokens\\\\\\\":16,\\\\\\\"completion_tokens\\\\\\\":174,\\\\\\\"total_tokens\\\\\\\":190,\\\\\\\"total_cost\\\\\\\":0.000095}}\\\"\",\"path\":[\"error\",\"body\"]},\"_p_returned_an_error\":{\"ret_btype\":\"boolean\",\"caption\":\"returned_an_error\",\"sample_value\":false,\"path\":[\"returned_an_error\"]}}},\"plugin_api.AAC.body.choices\":{\"caption\":\"Chat body choice\",\"fields\":{\"_p_index\":{\"ret_btype\":\"number\",\"caption\":\"index\",\"sample_value\":0,\"path\":[\"index\"]},\"_p_message.role\":{\"ret_btype\":\"text\",\"caption\":\"message role\",\"sample_value\":\"assistant\",\"path\":[\"message\",\"role\"]},\"_p_message.content\":{\"ret_btype\":\"text\",\"caption\":\"message content\",\"sample_value\":\"The meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. This question has been asked for centuries and has been the subject of much debate and contemplation.\\n\\nThere are many different perspectives on the meaning of life, and it is ultimately a personal and subjective matter. Some people may believe that the meaning of life is to seek happiness, knowledge, or personal fulfillment, while others may believe that it is to serve a higher power or to contribute to the greater good.\\n\\nIn the end, the meaning of life is something that each individual must determine for themselves, based on their own values, beliefs, and experiences. It is a question that may never have a definitive answer, but the search for meaning can be a rewarding and fulfilling journey in itself.\",\"path\":[\"message\",\"content\"]},\"_p_finish_reason\":{\"ret_btype\":\"text\",\"caption\":\"finish_reason\",\"sample_value\":\"stop\",\"path\":[\"finish_reason\"]},\"_p_message.reasoning\":{\"ret_btype\":\"text\",\"caption\":\"message reasoning\",\"sample_value\":\"\",\"path\":[\"message\",\"reasoning\"]}}}}",
             "url": "https://openrouter.ai/api/v1/chat/completions",
             "wrap_error": true
         },
@@ -134,12 +183,12 @@
             "0": "A",
             "1": "A",
             "2": "c",
-            "body": "{\n  \"model\": \"<Model>\",\n  \"messages\": [<Messages>],\n  \"stream\": true,\n  \"max_tokens\":<Max Tokens>,\n  \"temperature\":<Temperature>,\n  \"top_p\":<Top P>,\n  \"top_k\":<Top K>,\n  \"frequency_penalty\":<Frequency Penalty>,\n  \"presence_penalty\":<Presence Penalty>,\n  \"repetition_penalty\":<Repetition Penalty>,\n  \"min_p\":<Min Probability>,\n  \"top_a\":<Top A>,\n  \"seed\":<Seed>,\n  \"logit_bias\":<Logit Bias>,\n  \"logprobs\":<Log Probabilities>,\n  \"top_logprobs\":<Top Log Probability>,\n  \"response_format\":<Response Format>,\n  \"stop\":\"<Stop>\"\n}",
+            "body": "{\n  \"model\": \"<Model>\",\n  \"messages\": [<Messages>],\n  \"stream\": true,\n  \"max_tokens\":<Max Tokens>,\n  \"temperature\":<Temperature>,\n  \"top_p\":<Top P>,\n  \"top_k\":<Top K>,\n  \"frequency_penalty\":<Frequency Penalty>,\n  \"presence_penalty\":<Presence Penalty>,\n  \"repetition_penalty\":<Repetition Penalty>,\n  \"min_p\":<Min Probability>,\n  \"top_a\":<Top A>,\n  \"seed\":<Seed>,\n  \"logit_bias\":<Logit Bias>,\n  \"logprobs\":<Log Probabilities>,\n  \"top_logprobs\":<Top Log Probability>,\n  \"response_format\":<Response Format>,\n  \"stop\":\"<Stop>\",\n  \"tools\":<Tools>,\n  \"tool_choice\":\"<Tool Choice>\",\n  \"provider\":<Provider>,\n  \"transforms\":<Transforms>,\n  \"plugins\":<Plugins>,\n  \"reasoning\":<Reasoning>,\n  \"include_reasoning\":<Include Reasoning>\n}",
             "body_params": {
                 "AAD": {
                     "key": "Model",
                     "private": true,
-                    "value": "mistralai/mixtral-8x7b-instruct"
+                    "value": "meta-llama/llama-3.1-8b-instruct"
                 },
                 "AAE": {
                     "key": "Messages",
@@ -248,10 +297,59 @@
                     "key": "Stop",
                     "private": true,
                     "value": ""
+                },
+                "AAc": {
+                    "allow_blank": true,
+                    "doc": "Controls extended thinking for reasoning models (e.g. Claude 3.7+, DeepSeek R1, QwQ). Pass a JSON object with either an 'effort' key ('minimal', 'low', 'medium', 'high', 'xhigh') or a 'max_tokens' key (1024-128000). Example: {\"effort\":\"medium\"}",
+                    "key": "Reasoning",
+                    "private": true,
+                    "value": "{}"
+                },
+                "AAg": {
+                    "allow_blank": true,
+                    "doc": "Set to true to include the model's internal reasoning in the response under choices[0].message.reasoning. Only applies to reasoning/thinking models.",
+                    "key": "Include Reasoning",
+                    "private": true,
+                    "value": ""
+                },
+                "AAh": {
+                    "allow_blank": true,
+                    "doc": "A JSON array of tool/function definitions in OpenAI function-calling format. Enables tool use for models that support it. Example: [{\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"description\":\"Get weather\",\"parameters\":{\"type\":\"object\",\"properties\":{\"location\":{\"type\":\"string\"}},\"required\":[\"location\"]}}}]",
+                    "key": "Tools",
+                    "private": true,
+                    "value": "[]"
+                },
+                "AAi": {
+                    "allow_blank": true,
+                    "doc": "Controls which tool the model uses. Options: \"auto\" (model decides), \"none\" (no tools), \"required\" (must use a tool), or a specific tool object: {\"type\":\"function\",\"function\":{\"name\":\"tool_name\"}}",
+                    "key": "Tool Choice",
+                    "private": true,
+                    "value": ""
+                },
+                "AAj": {
+                    "allow_blank": true,
+                    "doc": "JSON object for provider routing preferences. Use 'order' to specify provider priority (e.g. [\"Anthropic\",\"OpenAI\"]), 'require_parameters' (true/false) to only route to providers supporting all specified params, and 'allow_fallbacks' (true/false) to control fallback behavior. Example: {\"order\":[\"Anthropic\"],\"require_parameters\":true,\"allow_fallbacks\":false}",
+                    "key": "Provider",
+                    "private": true,
+                    "value": "{}"
+                },
+                "AAk": {
+                    "allow_blank": true,
+                    "doc": "A JSON array of OpenRouter prompt transforms. Use [\"middle-out\"] to enable context compression, which trims the middle of long prompts to fit within context windows while preserving the beginning and end.",
+                    "key": "Transforms",
+                    "private": true,
+                    "value": "[]"
+                },
+                "AAl": {
+                    "allow_blank": true,
+                    "doc": "A JSON array of plugin names to enable for this request. Available plugins: \"web\" (real-time web search), \"file-parser\" (PDF/document processing), \"response-healing\" (auto-fix malformed JSON responses), \"context-compression\" (middle-out prompt compression). Example: [\"web\",\"response-healing\"]",
+                    "key": "Plugins",
+                    "private": true,
+                    "value": "[]"
                 }
             },
             "data_type": "stream",
-            "doc_link": "https://openrouter.ai/docs",
+            "doc_link": "https://openrouter.ai/docs/api-reference/chat-completion",
             "initialized": true,
             "method": "post",
             "name": "Chat (Streaming)",
@@ -286,6 +384,26 @@
             "should_reinitialize": false,
             "types": "{\"plugin_api.AAf\":{\"caption\":\"Get Credit\",\"fields\":{\"_p_data.total_credits\":{\"ret_btype\":\"number\",\"caption\":\"total_credits\",\"sample_value\":5,\"path\":[\"data\",\"total_credits\"]},\"_p_data.total_usage\":{\"ret_btype\":\"number\",\"caption\":\"total_usage\",\"sample_value\":2.6460948513072,\"path\":[\"data\",\"total_usage\"]}}}}",
             "url": "https://openrouter.ai/api/v1/credits"
+        },
+        "AAg": {
+            "doc_link": "https://openrouter.ai/docs/api-reference/get-a-generation",
+            "initialized": true,
+            "method": "get",
+            "name": "Get Generation",
+            "publish_as": "data",
+            "rank": 4,
+            "ret_value": "api.1714507440617x188775957185167360.plugin_api.AAg",
+            "should_reinitialize": false,
+            "query_params": {
+                "AAm": {
+                    "doc": "The generation ID returned in the 'id' field of a Chat response (e.g. gen-xxxxx). Used to retrieve cost, token usage, and latency metadata for a completed generation.",
+                    "key": "id",
+                    "private": true,
+                    "value": ""
+                }
+            },
+            "types": "{\"plugin_api.AAg\":{\"caption\":\"Get Generation\",\"fields\":{\"_p_data.id\":{\"ret_btype\":\"text\",\"caption\":\"data id\",\"sample_value\":\"gen-FPOxALI7cwQ6BvAQJKFKtyUyAItl\",\"path\":[\"data\",\"id\"]},\"_p_data.model\":{\"ret_btype\":\"text\",\"caption\":\"data model\",\"sample_value\":\"meta-llama/llama-3.1-8b-instruct\",\"path\":[\"data\",\"model\"]},\"_p_data.streamed\":{\"ret_btype\":\"boolean\",\"caption\":\"data streamed\",\"sample_value\":false,\"path\":[\"data\",\"streamed\"]},\"_p_data.total_cost\":{\"ret_btype\":\"number\",\"caption\":\"data total_cost\",\"sample_value\":0.000095,\"path\":[\"data\",\"total_cost\"]},\"_p_data.tokens_prompt\":{\"ret_btype\":\"number\",\"caption\":\"data tokens_prompt\",\"sample_value\":16,\"path\":[\"data\",\"tokens_prompt\"]},\"_p_data.tokens_completion\":{\"ret_btype\":\"number\",\"caption\":\"data tokens_completion\",\"sample_value\":174,\"path\":[\"data\",\"tokens_completion\"]},\"_p_data.native_tokens_prompt\":{\"ret_btype\":\"number\",\"caption\":\"data native_tokens_prompt\",\"sample_value\":16,\"path\":[\"data\",\"native_tokens_prompt\"]},\"_p_data.native_tokens_completion\":{\"ret_btype\":\"number\",\"caption\":\"data native_tokens_completion\",\"sample_value\":174,\"path\":[\"data\",\"native_tokens_completion\"]},\"_p_data.native_tokens_reasoning\":{\"ret_btype\":\"number\",\"caption\":\"data native_tokens_reasoning\",\"sample_value\":0,\"path\":[\"data\",\"native_tokens_reasoning\"]},\"_p_data.latency\":{\"ret_btype\":\"number\",\"caption\":\"data latency\",\"sample_value\":1250,\"path\":[\"data\",\"latency\"]},\"_p_data.created_at\":{\"ret_btype\":\"text\",\"caption\":\"data created_at\",\"sample_value\":\"2024-05-09T00:00:00Z\",\"path\":[\"data\",\"created_at\"]},\"_p_data.finish_reason\":{\"ret_btype\":\"text\",\"caption\":\"data finish_reason\",\"sample_value\":\"stop\",\"path\":[\"data\",\"finish_reason\"]}}}}",
+            "url": "https://openrouter.ai/api/v1/generation"
         }
     },
     "human": "openrouter",
