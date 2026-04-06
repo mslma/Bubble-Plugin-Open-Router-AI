@@ -259,9 +259,9 @@
             "rank": 1,
             "ret_value": "api.plugin_api.1714507440617x188775957185167360.AAd",
             "should_reinitialize": false,
-            "types": "{\"1714507440617x188775957185167360.AAd\":{\"format\":\"text/event-stream\",\"fields\":{\"default_stream\":{\"caption\":\"text stream\",\"ret_btype\":\"api.apiconnector2.text_stream\",\"required\":true},\"_error_status_code\":{\"caption\":\"error: status_code\",\"ret_btype\":\"number\",\"hidden\":true},\"_error_status_message\":{\"caption\":\"error: status_message\",\"ret_btype\":\"text\",\"hidden\":true},\"_error_body\":{\"caption\":\"error: body\",\"ret_btype\":\"text\",\"hidden\":true},\"_returned_an_error\":{\"caption\":\"returned_an_error\",\"ret_btype\":\"sys.bool\",\"hidden\":true}},\"handlers\":[{\"cond\":{\"==\":[{\"var\":\"parsed.object\"},\"chat.completion.chunk\"]},\"ops\":[{\"type\":\"push\",\"field\":\"default_stream\",\"path\":[\"parsed\",\"choices\",\"0\",\"delta\",\"content\"]}]}]}}",
+            "types": "{\"1714507440617x188775957185167360.AAd\":{\"format\":\"text/event-stream\",\"fields\":{\"default_stream\":{\"caption\":\"Streamed text\",\"ret_btype\":\"api.apiconnector2.text_stream\",\"required\":true,\"validationError\":false}},\"handlers\":[{\"cond\":{\"==\":[{\"var\":\"parsed.object\"},\"chat.completion.chunk\"]},\"ops\":[{\"type\":\"push\",\"field\":\"default_stream\",\"path\":[\"parsed\",\"choices\",\"0\",\"delta\",\"content\"]}]}]}}",
             "url": "https://openrouter.ai/api/v1/chat/completions",
-            "wrap_error": true
+            "wrap_error": false
         },
         "AAe": {
             "doc_link": "https://openrouter.ai/docs/api-reference/list-available-models",
