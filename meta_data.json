@@ -3,7 +3,7 @@
         "0": "artificial intelligence (AI)"
     },
     "data_tracked": false,
-    "description": "A unified interface for LLMs. OpenRouter is an API that can be used with most AI SDKs, and has a very similar format to OpenAI's own API.\n\n1. Navigate to the OpenRouter API key management page at https://openrouter.ai/keys.\n2. Click on the \"Create Key\" button to generate a new API key.\n3. Once you have your API key, open your plugin settings. In the Authorization key field, enter your API key in the following format: Bearer API_KEY, replacing API_KEY with the actual key you generated.",
+    "description": "One API for hundreds of language models. OpenRouter gives your Bubble app a single, OpenAI-compatible endpoint that reaches models from OpenAI, Anthropic, Google, Meta, Mistral and many more — switch model by changing a text field, with no new plugin and no new integration. Streaming is built in, so responses appear token by token instead of after a long wait.\n\nKey Features:\n⚡ Streaming Chat: The streaming chat action delivers output as it is generated for a fast, live typing experience.\n\n💬 Standard Chat: A non-streaming call for workflows that just need the finished text.\n\n🔀 Model Freedom: List available models at runtime and route each request to whichever model fits the task and budget.\n\n💳 Cost Visibility: Check remaining credits and pull per-generation details to track spend and token usage.\n\n🔑 Simple Setup: One OpenRouter API key in the plugin settings covers every provider behind it.\n\nPlugin support: https://inova.us/support",
     "designed_for": "both",
     "image": "//meta-q.cdn.bubble.io/f1714508691608x403426812698008700/openrouter_logojpg.jpg",
     "license": "open_source",
